@@ -1,0 +1,123 @@
+/* Glint Better WP Search Styles */
+
+/* Search Form Styles */
+.glint-search-form {
+    display: flex;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.glint-search-form label {
+    display: flex;
+    flex: 1;
+}
+
+.glint-search-form .search-field {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-right: none;
+    border-radius: 4px 0 0 4px;
+    font-size: 16px;
+    outline: none;
+}
+
+.glint-search-form .search-field:focus {
+    border-color: #007cba;
+    box-shadow: 0 0 0 1px #007cba;
+}
+
+.glint-search-form .search-submit {
+    padding: 10px 20px;
+    background-color: #007cba;
+    color: white;
+    border: 1px solid #007cba;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.glint-search-form .search-submit:hover {
+    background-color: #005a87;
+}
+
+.glint-search-form .screen-reader-text {
+    clip: rect(1px, 1px, 1px, 1px);
+    position: absolute;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+}
+
+/* Responsive search form */
+@media (max-width: 480px) {
+    .glint-search-form {
+        flex-direction: column;
+    }
+
+    .glint-search-form .search-field {
+        border-right: 1px solid #ddd;
+        border-radius: 4px;
+        margin-bottom: 10px;
+    }
+
+    .glint-search-form .search-submit {
+        border-radius: 4px;
+    }
+}
+
+/* Search Results Styles */
+.glint-search-results h1{
+    font-size: 2.5rem;
+    text-align: center;
+    margin: 40px auto 0;
+    line-height: 1;
+}
+
+.glint-search-results .search-results-count{
+    text-align: center;
+    margin-bottom: 40px;
+    text-transform: capitalize;
+    letter-spacing: 0.5px;
+}
+
+.glint-search-results .search-results{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+.glint-search-results .search-results article{
+    width: calc((100% - 120px) / 4);
+}
+
+.glint-search-results .search-results h2{
+    font-size: 1.25rem;
+    margin-top: 10px;
+}
+
+.glint-search-results .search-results .post-type{
+    position: absolute;
+    right: 0;
+    background: #e91d2e;
+    color: #fff;
+    padding: 4px 10px 3px;
+    font-size: 0.8rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .glint-search-results .container {
+        padding: 0 10px;
+    }
+
+    .glint-search-results h1 {
+        font-size: 1.5em;
+    }
+
+    .search-result-item {
+        padding: 15px 0;
+    }
+}
