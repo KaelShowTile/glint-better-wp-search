@@ -24,9 +24,9 @@ get_header(); ?>
                     <article id="post-<?php the_ID(); ?>" <?php post_class('search-result-item'); ?>>
                         <header class="entry-header">
                             <a href="<?php the_permalink(); ?>" rel="bookmark">
-                                <span class="post-type"><?php echo get_post_type_object(get_post_type())->labels->singular_name; ?></span>
-                                <?php the_post_thumbnail( 'large' ); ?>
+                                <?php the_post_thumbnail( 'medium' ); ?>
                             </a>
+                            <span class="post-type"><?php echo get_post_type_object(get_post_type())->labels->singular_name; ?></span>
                             <h2 class="entry-title">
                                 <a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a>
                             </h2>

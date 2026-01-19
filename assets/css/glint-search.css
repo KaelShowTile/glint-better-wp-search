@@ -95,16 +95,16 @@
 
 .glint-search-results .search-results h2{
     font-size: 1.25rem;
-    margin-top: 10px;
+    margin-top: 0;
 }
 
 .glint-search-results .search-results .post-type{
-    position: absolute;
-    right: 0;
-    background: #e91d2e;
-    color: #fff;
-    padding: 4px 10px 3px;
+    display: inline-block;
+    width: 100%;
     font-size: 0.8rem;
+    text-transform: uppercase;
+    color: #666;
+    margin-top: 10px;
 }
 
 /* Responsive design */
