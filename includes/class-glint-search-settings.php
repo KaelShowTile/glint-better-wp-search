@@ -109,7 +109,7 @@ class Glint_Search_Settings {
     public function settings_page() {
         ?>
         <div class="wrap">
-            <h1>Glint Better WP Search Settings</h1>
+            <h1>ST Search Settings</h1>
             <form method="post" action="options.php">
                 <?php
                 settings_fields('glint_search_options');
