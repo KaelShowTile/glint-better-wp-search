@@ -10,18 +10,74 @@ get_header(); ?>
     <div class="container">
         <h1><?php printf(__('Search Results for: %s', 'glint-better-wp-search'), '<span>' . get_search_query() . '</span>'); ?></h1>
 
-        <?php if (have_posts()) : ?>
-            <div class="search-results-count">
-                <?php
-                global $wp_query;
-                $total_results = $wp_query->found_posts;
-                printf(_n('%d result found', '%d results found', $total_results, 'glint-better-wp-search'), $total_results);
-                ?>
+        <?php
+        // Exact Repeater Matches (Feature #3)
+        $exact_matches = array();
+        if (class_exists('Glint_Search')) {
+            $exact_matches = Glint_Search::get_exact_repeater_matches(get_query_var('s'));
+        }
+        ?>
+
+        <?php if (!empty($exact_matches)) : ?>
+            <div class="search-results exact-matches-section">
+                <?php foreach ($exact_matches as $match){
+
+                    $tile_finish = null; 
+                    $tile_code = null;
+                    $tile_size = null;
+                    $tile_size_check_string = "tile_size_name";
+                    $tile_link = esc_url($match['permalink']);
+                    $tile_img = null;
+
+                    foreach ($match['subfields'] as $sf_key => $sf_value) {
+                        if ($sf_key == "finish_name"){
+                            $tile_finish = esc_html($sf_value);
+                        }elseif($sf_key == "product_code"){
+                            $tile_code = esc_html($sf_value);
+                            $tile_link = esc_url($match['permalink']) . "/#" . $tile_code;
+                        }elseif($sf_key == "finish_image"){
+                            $tile_img = wp_get_attachment_image($sf_value, 'medium');
+                        }elseif(str_contains($sf_key, $tile_size_check_string)){ 
+                            if($tile_size){
+                                $tile_size .= " ," . esc_html($sf_value);
+                            }else{
+                                $tile_size .= esc_html($sf_value);
+                            }  
+                        }
+                    }?>
+
+                    <article class="exact-result-item">
+                        <div class="item-thumbnail">
+                            <a href="<?php echo $tile_link; ?>">
+                                <?php echo $tile_img ? $tile_img : '<div style="width:100px;height:100px;background:#ccc;"></div>'; ?>
+                            </a>
+                        </div>
+                        <div class="item-details">
+                            <h2><a href="<?php echo $tile_link;?>"><?php echo esc_html($match['post_title']); ?></a></h2>
+                            
+                            <ul class="item-meta">
+                                <?php if($tile_finish) : ?>
+                                    <li>Finish: <?php echo $tile_finish; ?></li>
+                                <?php endif; ?>
+                                <?php if($tile_code) : ?>
+                                    <li>Code: <?php echo $tile_code; ?></li>
+                                <?php endif; ?>
+                                <?php if($tile_size) : ?>
+                                    <li>Size: <?php echo $tile_size; ?></li>
+                                <?php endif; ?>
+                            </ul>
+                        </div>
+                    </article>
+
+                <?php } ?>
             </div>
+        <?php endif; ?>
+
+        <?php if (have_posts()) : ?>
 
             <div class="search-results">
                 <?php while (have_posts()) : the_post(); ?>
-                    <article id="post-<?php the_ID(); ?>" <?php post_class('search-result-item'); ?>>
+                    <article id="post-<?php the_ID(); ?>" <?php post_class('search-result-item'); ?> class="search-results article">
                         <header class="entry-header">
                             <a href="<?php the_permalink(); ?>" rel="bookmark">
                                 <?php the_post_thumbnail( 'medium' ); ?>

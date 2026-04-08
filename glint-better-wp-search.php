@@ -2,9 +2,8 @@
 /**
  * Plugin Name: ST Search
  * Description: Enhanced WordPress search plugin that supports all post types, searches title and content, with customizable templates.
- * Version: 1.0.0
+ * Version: 1.1.0
  * Author: kael
- * License: GPL v2 or later
  * Text Domain: glint-better-wp-search
  */
 
@@ -35,6 +34,8 @@ function glint_search_activate() {
     add_option('glint_search_post_types', array('post', 'page'));
     add_option('glint_search_template', 'search-results.php');
     add_option('glint_search_results_per_page', 10);
+    add_option('glint_search_enable_exact_repeater', 'no');
+    add_option('glint_search_acf_fields', array());
 }
 
 // Deactivation hook
@@ -42,6 +43,12 @@ register_deactivation_hook(__FILE__, 'glint_search_deactivate');
 function glint_search_deactivate() {
     // Cleanup if needed
 }
+
+// Enqueue frontend styles
+function glint_search_enqueue_scripts() {
+    wp_enqueue_style('glint-better-wp-search-style', GLINT_SEARCH_PLUGIN_URL . 'assets/css/glint-better-wp-search.css', array(), '1.1.0');
+}
+add_action('wp_enqueue_scripts', 'glint_search_enqueue_scripts');
 
 /**
  * Generate a simple search form

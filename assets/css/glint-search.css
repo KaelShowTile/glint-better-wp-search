@@ -50,23 +50,6 @@
     overflow: hidden;
 }
 
-/* Responsive search form */
-@media (max-width: 480px) {
-    .glint-search-form {
-        flex-direction: column;
-    }
-
-    .glint-search-form .search-field {
-        border-right: 1px solid #ddd;
-        border-radius: 4px;
-        margin-bottom: 10px;
-    }
-
-    .glint-search-form .search-submit {
-        border-radius: 4px;
-    }
-}
-
 /* Search Results Styles */
 .glint-search-results h1{
     font-size: 2.5rem;
@@ -119,5 +102,22 @@
 
     .search-result-item {
         padding: 15px 0;
+    }
+}
+
+/* Responsive search form */
+@media (max-width: 480px) {
+    .glint-search-form {
+        flex-direction: column;
+    }
+
+    .glint-search-form .search-field {
+        border-right: 1px solid #ddd;
+        border-radius: 4px;
+        margin-bottom: 10px;
+    }
+
+    .glint-search-form .search-submit {
+        border-radius: 4px;
     }
 }
