@@ -46,7 +46,7 @@ function glint_search_deactivate() {
 
 // Enqueue frontend styles
 function glint_search_enqueue_scripts() {
-    wp_enqueue_style('glint-better-wp-search-style', GLINT_SEARCH_PLUGIN_URL . 'assets/css/glint-better-wp-search.css', array(), '1.1.0');
+    wp_enqueue_style('glint-better-wp-search-style', GLINT_SEARCH_PLUGIN_URL . 'assets/css/glint-search.css', array(), '1.1.0');
 }
 add_action('wp_enqueue_scripts', 'glint_search_enqueue_scripts');
 

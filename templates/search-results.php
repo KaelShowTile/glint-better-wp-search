@@ -13,7 +13,8 @@ get_header(); ?>
         <?php
         // Exact Repeater Matches (Feature #3)
         $exact_matches = array();
-        if (class_exists('Glint_Search')) {
+        // Only fetch and display exact matches if we are on the first page of search results
+        if (!is_paged() && class_exists('Glint_Search')) {
             $exact_matches = Glint_Search::get_exact_repeater_matches(get_query_var('s'));
         }
         ?>
