@@ -25,6 +25,30 @@ class Glint_Search {
 
     public function load_search_template($template) {
         if (is_search()) {
+            global $wp_query;
+
+            // check if no result, return no-results.php
+            $exact_matches = array();
+            if (!is_paged()) {
+                $exact_matches = self::get_exact_repeater_matches(get_query_var('s'));
+            }
+
+            if ($wp_query->found_posts == 0 && empty($exact_matches)) {
+                // remove 404 and return 200 http code
+                $wp_query->is_404 = false;
+                status_header(200);
+
+                $theme_template = locate_template(array('no-results.php'));
+                if ($theme_template) {
+                    return $theme_template;
+                }
+                
+                $plugin_template = GLINT_SEARCH_PLUGIN_DIR . 'templates/no-results.php';
+                if (file_exists($plugin_template)) {
+                    return $plugin_template;
+                }
+            }
+
             $custom_template = get_option('glint_search_template', 'search-results.php');
             
             // 1. Check if the active theme has an override

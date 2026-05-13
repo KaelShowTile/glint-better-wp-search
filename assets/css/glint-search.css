@@ -90,6 +90,10 @@
     margin-top: 10px;
 }
 
+.glint-search-results.no-result{
+    margin-bottom: 50px;
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
     .glint-search-results .container {
