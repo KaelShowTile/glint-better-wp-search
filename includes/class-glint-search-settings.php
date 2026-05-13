@@ -38,7 +38,11 @@ class Glint_Search_Settings {
 
         ?>
         <div class="wrap">
+<<<<<<< HEAD
             <h1><?php _e('ST Search Settings', 'glint-better-wp-search'); ?></h1>
+=======
+            <h1>ST Search Settings</h1>
+>>>>>>> 4a36391d8c35d805ba75eee0e2e2992a9f78859f
             <form method="post" action="options.php">
                 <?php settings_fields('glint_search_settings_group'); ?>
                 
